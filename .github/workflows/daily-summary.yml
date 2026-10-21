@@ -1,0 +1,59 @@
+name: Daily Horizon Summary
+
+on:
+  schedule:
+    # 08:00 Melbourne local time, including daylight saving time changes.
+    - cron: '0 8 * * *'
+      timezone: 'Australia/Melbourne'
+  workflow_dispatch:
+
+concurrency:
+  group: horizon-daily-summary
+  cancel-in-progress: false
+
+jobs:
+  daily-summary:
+    runs-on: ubuntu-latest
+    env:
+      HORIZON_REPORT_TIMEZONE: Australia/Melbourne
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.11.26'
+
+      - name: Install dependencies
+        run: uv sync --frozen --python 3.12
+
+      - name: Prepare GitHub Actions config
+        run: cp data/config.github.json data/config.json
+
+      - name: Check required secrets
+        env:
+          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
+          HORIZON_WEBHOOK_URL: ${{ secrets.HORIZON_WEBHOOK_URL }}
+        run: |
+          if [ -z "$MOONSHOT_API_KEY" ]; then
+            echo 'Missing MOONSHOT_API_KEY GitHub Actions secret.' >&2
+            exit 1
+          fi
+          if [ -z "$HORIZON_WEBHOOK_URL" ]; then
+            echo 'Missing HORIZON_WEBHOOK_URL GitHub Actions secret.' >&2
+            exit 1
+          fi
+
+      - name: Run Horizon and send Feishu digest
+        env:
+          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
+          HORIZON_WEBHOOK_URL: ${{ secrets.HORIZON_WEBHOOK_URL }}
+        run: uv run --frozen horizon --hours 24
