@@ -176,7 +176,7 @@
     "default_group_limit": null
   },
   "webhook": {
-    "enabled": false,
+    "enabled": true,
     "url_env": "HORIZON_WEBHOOK_URL",
     "delivery": "summary_and_items",
     "overview_position": "last",
@@ -211,12 +211,5 @@
       }
     },
     "headers": ""
-  },
-  "wechat": {
-    "enabled": true,
-    "languages": [
-      "zh"
-    ],
-    "chunk_size": 4000
   }
 }
