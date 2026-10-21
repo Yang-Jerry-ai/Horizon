@@ -223,8 +223,10 @@ class OpenAIClient(AIClient):
         self.provider = config.provider.value
         # Some newer models (e.g. Claude Opus 4.7 on Bedrock Converse) reject
         # `temperature`. We learn this on first 400 and stop sending it.
-        self._supports_temperature = True
-        self._use_max_completion_tokens = any(
+        # Kimi K3 fixes temperature at 1.0; omit it even if the shared config
+        # requests another value so the API accepts the request.
+        self._supports_temperature = config.model != "kimi-k3"
+        self._use_max_completion_tokens = config.model == "kimi-k3" or any(
             config.model.startswith(prefix)
             for prefix in self._MODELS_REQUIRING_MAX_COMPLETION_TOKENS
         )
