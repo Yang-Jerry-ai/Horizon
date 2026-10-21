@@ -28,6 +28,10 @@
       "finance-news": {
         "threshold": 7,
         "topic_dedup": true
+      },
+      "bio-research": {
+        "threshold": 7,
+        "topic_dedup": true
       }
     }
   },
@@ -119,6 +123,46 @@
         "enabled": false,
         "category": "linux-kernel",
         "profile": "tech-news"
+      },
+      {
+        "name": "Nature Structural & Molecular Biology",
+        "url": "https://www.nature.com/nsmb.rss",
+        "enabled": true,
+        "category": "structural-biology",
+        "profile": "bio-research",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Nature Methods",
+        "url": "https://www.nature.com/nmeth.rss",
+        "enabled": true,
+        "category": "omics-methods",
+        "profile": "bio-research",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Nature Chemical Biology",
+        "url": "https://www.nature.com/nchembio.rss",
+        "enabled": true,
+        "category": "chemical-biology",
+        "profile": "bio-research",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "bioRxiv Genomics & Bioinformatics",
+        "url": "https://connect.biorxiv.org/biorxiv_xml.php?subject=genomics+bioinformatics",
+        "enabled": true,
+        "category": "omics-preprint",
+        "profile": "bio-research",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "bioRxiv Biophysics & Biochemistry",
+        "url": "https://connect.biorxiv.org/biorxiv_xml.php?subject=biophysics+biochemistry",
+        "enabled": true,
+        "category": "structural-preprint",
+        "profile": "bio-research",
+        "content_extractor": "trafilatura"
       }
     ],
     "reddit": {
@@ -169,6 +213,7 @@
     "profile_order": [
       "tech-news",
       "tech-blog",
+      "bio-research",
       "finance-news"
     ],
     "category_groups": {},
