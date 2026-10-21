@@ -54,6 +54,7 @@ jobs:
 
       - name: Run Horizon and send Feishu digest
         env:
+          GITHUB_TOKEN: ${{ github.token }}
           MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
           HORIZON_WEBHOOK_URL: ${{ secrets.HORIZON_WEBHOOK_URL }}
         run: uv run --frozen horizon --hours 24
