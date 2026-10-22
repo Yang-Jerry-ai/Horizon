@@ -22,8 +22,8 @@
         "topic_dedup": true
       },
       "tech-blog": {
-        "threshold": 4,
-        "topic_dedup": false
+        "threshold": 7,
+        "topic_dedup": true
       },
       "finance-news": {
         "threshold": 7,
@@ -163,6 +163,38 @@
         "category": "structural-preprint",
         "profile": "bio-research",
         "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Endpoints News",
+        "url": "https://endpts.com/feed/",
+        "enabled": true,
+        "category": "pharma-industry",
+        "profile": "auto",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Fierce Biotech",
+        "url": "https://www.fiercebiotech.com/rss/xml",
+        "enabled": true,
+        "category": "pharma-industry",
+        "profile": "auto",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "BioPharma Dive",
+        "url": "https://www.biopharmadive.com/feeds/news/",
+        "enabled": true,
+        "category": "pharma-industry",
+        "profile": "auto",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "STAT News",
+        "url": "https://www.statnews.com/feed/",
+        "enabled": true,
+        "category": "pharma-industry",
+        "profile": "auto",
+        "content_extractor": "trafilatura"
       }
     ],
     "reddit": {
@@ -209,7 +241,7 @@
     "time_window_hours": 24
   },
   "digest": {
-    "max_items": null,
+    "max_items": 5,
     "profile_order": [
       "tech-news",
       "tech-blog",
