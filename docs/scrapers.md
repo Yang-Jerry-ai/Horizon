@@ -107,6 +107,7 @@ Fetches any Atom/RSS feed using the `feedparser` library. Tries multiple date fi
 ```
 
 - `category` — optional tag for grouping (e.g., `"programming"`, `"microblog"`)
+- `fetch_limit` — optional positive cap on the newest entries within the configured time window, applied before full-text extraction and AI analysis; omitted means no per-feed cap
 - `content_extractor` — optional name of an extractor defined in `extractors` config; when set, the full article text replaces the feed-provided excerpt (see [Extractors](extractors.md))
 
 **Extracted data**: title, URL, author, content (from `summary`/`description`/`content` fields, or full article text if an extractor is configured), feed name, category, and entry tags.

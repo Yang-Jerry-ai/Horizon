@@ -32,6 +32,10 @@
       "bio-research": {
         "threshold": 7,
         "topic_dedup": true
+      },
+      "china-real-estate": {
+        "threshold": 7,
+        "topic_dedup": true
       }
     }
   },
@@ -130,6 +134,7 @@
         "enabled": true,
         "category": "structural-biology",
         "profile": "bio-research",
+        "fetch_limit": 3,
         "content_extractor": "trafilatura"
       },
       {
@@ -138,6 +143,7 @@
         "enabled": true,
         "category": "omics-methods",
         "profile": "bio-research",
+        "fetch_limit": 3,
         "content_extractor": "trafilatura"
       },
       {
@@ -146,6 +152,7 @@
         "enabled": true,
         "category": "chemical-biology",
         "profile": "bio-research",
+        "fetch_limit": 3,
         "content_extractor": "trafilatura"
       },
       {
@@ -154,6 +161,7 @@
         "enabled": true,
         "category": "omics-preprint",
         "profile": "bio-research",
+        "fetch_limit": 3,
         "content_extractor": "trafilatura"
       },
       {
@@ -162,6 +170,7 @@
         "enabled": true,
         "category": "structural-preprint",
         "profile": "bio-research",
+        "fetch_limit": 3,
         "content_extractor": "trafilatura"
       },
       {
@@ -220,7 +229,7 @@
         }
       ],
       "users": [],
-      "fetch_comments": 10
+      "fetch_comments": 3
     },
     "telegram": {
       "enabled": true,
@@ -228,27 +237,47 @@
         {
           "channel": "zaihuapd",
           "enabled": true,
-          "fetch_limit": 20,
+          "fetch_limit": 10,
           "profile": [
             "tech-news",
             "finance-news"
           ]
         }
       ]
+    },
+    "google_news": {
+      "enabled": true,
+      "query": "中国 房地产 (政策 OR 限购 OR 房贷 OR 住房公积金 OR 商品房销售 OR 房价 OR 房地产开发投资 OR 土地成交)",
+      "language": "zh",
+      "country": "CN",
+      "max_results": 20,
+      "category": "china-real-estate",
+      "profile": "china-real-estate"
     }
   },
   "collection": {
     "time_window_hours": 24
   },
   "digest": {
-    "max_items": 5,
+    "max_items": 7,
+    "group_by": "profile",
+    "category_groups": {
+      "bio-research": {
+        "limit": 1,
+        "categories": ["bio-research"]
+      },
+      "china-real-estate": {
+        "limit": 2,
+        "categories": ["china-real-estate"]
+      }
+    },
     "profile_order": [
       "tech-news",
       "tech-blog",
       "bio-research",
+      "china-real-estate",
       "finance-news"
     ],
-    "category_groups": {},
     "default_group": "other",
     "default_group_limit": null
   },

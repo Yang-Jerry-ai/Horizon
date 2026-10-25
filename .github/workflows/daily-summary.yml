@@ -2,8 +2,8 @@ name: Daily Horizon Summary
 
 on:
   schedule:
-    # 08:00 Melbourne local time, including daylight saving time changes.
-    - cron: '0 8 * * *'
+    # 07:30 Melbourne local time, including daylight saving time changes.
+    - cron: '30 7 * * *'
       timezone: 'Australia/Melbourne'
   workflow_dispatch:
 

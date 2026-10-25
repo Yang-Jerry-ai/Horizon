@@ -79,11 +79,18 @@ class RSSScraper(BaseScraper):
         if feed.bozo and not feed.entries:
             raise ValueError("Invalid RSS/Atom feed")
 
+        eligible_entries = []
         for entry in feed.entries:
             published_at = self._parse_date(entry)
             if not published_at or published_at < since:
                 continue
+            eligible_entries.append((entry, published_at))
 
+        if source.fetch_limit is not None:
+            eligible_entries.sort(key=lambda pair: pair[1], reverse=True)
+            eligible_entries = eligible_entries[:source.fetch_limit]
+
+        for entry, published_at in eligible_entries:
             feed_id = str(source.url).split("//")[1].replace("/", "_")
             entry_id = entry.get("id", entry.get("link", ""))
             entry_hash = hashlib.sha256(str(entry_id).encode("utf-8")).hexdigest()[:16]
